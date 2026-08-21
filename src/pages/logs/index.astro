@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const logs = await getCollection('logs', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort by date descending
+logs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="System Logs | Maurice Moore">
+  <header class="mb-12 border-b border-gray-800 pb-6">
+    <div class="flex items-baseline gap-4 mb-2">
+      <h1 class="text-3xl text-white font-bold tracking-tight">System Logs</h1>
+    </div>
+    <p class="font-mono text-gray-500 text-sm">Engineering notes, architecture decisions, and system deployments.</p>
+  </header>
+
+  <div class="space-y-4 max-w-2xl">
+    {logs.map(log => (
+      <a href={`/logs/${log.id}`} class="block border border-brand-slate p-6 hover:border-gray-700 transition-colors group">
+        <div class="flex justify-between items-baseline mb-2">
+          <h2 class="text-lg text-white group-hover:text-brand-mint transition-colors">{log.data.title}</h2>
+          <span class="font-mono text-xs text-brand-mint">
+            {log.data.date.toISOString().split('T')[0]}
+          </span>
+        </div>
+        {log.data.tags && (
+          <div class="font-mono text-xs text-gray-500">
+            // [{log.data.tags.join(', ')}]
+          </div>
+        )}
+      </a>
+    ))}
+  </div>
+  
+  <div class="mt-12">
+    <a href="/" class="font-mono text-sm text-gray-500 hover:text-brand-mint">&lt;- Return to root</a>
+  </div>
+</BaseLayout>
