@@ -7,6 +7,12 @@ const navLinks = [
   { href: 'https://www.linkedin.com/in/maurice-motion/', label: 'LinkedIn' },
   { href: '/resume.pdf', label: 'Resume' },
 ];
+
+const credentials = [
+  'Eleven years at Google',
+  'Currently a free-agent',
+  'Based in Atlanta',
+];
 ---
 
 <BaseLayout>
@@ -21,12 +27,18 @@ const navLinks = [
     </div>
 
     <p class="mt-6 text-gray-300 leading-relaxed">
-      I design, build, and scale complex systems. Eleven years at Google. Currently a <span class="whitespace-nowrap">free-agent</span>. Based in Atlanta.
+      I design, build, and scale complex systems.
     </p>
 
-    <p class="mt-3 font-mono text-sm text-gray-500">
+    <p class="mt-4 text-gray-400 leading-relaxed">
       Iteratively shrinking the surface area of what I don't understand.
     </p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-y-1 font-mono text-xs text-gray-500">
+      {credentials.map((item) => (
+        <span class="whitespace-nowrap after:mx-2.5 after:text-gray-700 after:content-['|'] last:after:content-none">{item}</span>
+      ))}
+    </div>
 
     <nav class="mt-8 font-mono text-sm text-gray-400 flex flex-wrap items-center gap-y-2 max-[420px]:grid max-[420px]:grid-cols-2 max-[420px]:gap-x-4 max-[420px]:gap-y-3">
       {navLinks.map((link) => (
