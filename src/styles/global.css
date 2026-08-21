@@ -1,1 +1,20 @@
 @import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+@layer base {
+  body {
+    @apply bg-brand-dark text-gray-300 antialiased selection:bg-brand-mint selection:text-brand-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono text-white tracking-tight;
+  }
+
+  a {
+    @apply text-brand-mint transition-colors hover:text-white;
+  }
+
+  code {
+    @apply font-mono bg-brand-slate text-brand-mint px-1.5 py-0.5 rounded-md text-sm;
+  }
+}

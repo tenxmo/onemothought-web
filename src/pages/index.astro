@@ -1,17 +1,57 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <header class="mb-16">
+    <div class="flex items-baseline gap-4 mb-2">
+      <h1 class="text-3xl font-bold text-white">Maurice Moore</h1>
+      <span class="font-mono text-brand-mint text-sm">v2.0.26</span>
+    </div>
+    <p class="font-mono text-gray-500 text-sm">Staff-level Backend & Infrastructure Engineer</p>
+  </header>
+
+  <section class="mb-16 max-w-2xl text-gray-300 space-y-6 leading-relaxed">
+    <p>
+      I design and scale distributed systems. With over a decade of experience across media platforms, monetization engines, and core infrastructure, I specialize in building deterministic, low-latency architectures.
+    </p>
+    <p>
+      Currently exploring autonomous agent memory systems, vector embeddings, and real-time network engines. Based in Atlanta, GA.
+    </p>
+    <div class="font-mono text-sm flex gap-4 text-gray-400">
+      <a href="https://github.com" class="hover:text-brand-mint transition-colors">GitHub</a>
+      <span>//</span>
+      <a href="https://linkedin.com" class="hover:text-brand-mint transition-colors">LinkedIn</a>
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <h2 class="font-mono text-lg mb-6 border-b border-gray-800 pb-2 text-white">Active Deployments</h2>
+    
+    <div class="space-y-4">
+      {/* Project 1 */}
+      <div class="border border-brand-slate p-6 hover:border-gray-700 transition-colors group">
+        <div class="flex justify-between items-baseline mb-2">
+          <h3 class="text-lg text-white group-hover:text-brand-mint transition-colors">Epistemic Router</h3>
+          <span class="font-mono text-xs text-brand-mint">2026-08</span>
+        </div>
+        <p class="text-sm text-gray-400 mb-4">
+          A deterministic pre-LLM memory ingestion pipeline for autonomous agents. Built to optimize context windows and manage knowledge graphs.
+        </p>
+        <div class="font-mono text-xs text-gray-500">Tech: Python, asyncio, Cross-encoder Models, LLM Orchestration</div>
+      </div>
+
+      {/* Project 2 */}
+      <div class="border border-brand-slate p-6 hover:border-gray-700 transition-colors group">
+        <div class="flex justify-between items-baseline mb-2">
+          <h3 class="text-lg text-white group-hover:text-brand-mint transition-colors">Real-Time Multiplayer Engine</h3>
+          <span class="font-mono text-xs text-brand-mint">2026-03</span>
+        </div>
+        <p class="text-sm text-gray-400 mb-4">
+          Server-authoritative game engine built to handle concurrent state resolution for a custom card game.
+        </p>
+        <div class="font-mono text-xs text-gray-500">Tech: Go, Flutter Web, WebSockets</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
