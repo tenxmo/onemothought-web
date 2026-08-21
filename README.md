@@ -1,43 +1,83 @@
-# Astro Starter Kit: Minimal
+# onemothought-web
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A minimal digital garden, portfolio, and routing layer built with Astro and Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Static-rendered, dark by default, typeset in Geist Sans and JetBrains Mono.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Stack
+
+| Layer      | Choice                                  |
+| :--------- | :-------------------------------------- |
+| Framework  | Astro 7 — static output, no SSR adapter |
+| Styling    | Tailwind CSS 4 via `@tailwindcss/vite`  |
+| Content    | MDX content collections (`glob` loader) |
+| Prose      | `@tailwindcss/typography`               |
+| Sans       | Geist Sans (self-hosted, Fontsource)    |
+| Mono       | JetBrains Mono (self-hosted, Fontsource)|
+| Deployment | Vercel                                  |
+
+Requires Node `>=22.12.0`.
+
+---
+
+## Structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── content/
+│   └── logs/            # MDX entries, schema in content.config.ts
+├── layouts/
+│   └── BaseLayout.astro # <head>, metadata, fonts, global styles
+├── pages/
+│   ├── index.astro      # /
+│   └── logs/
+│       ├── index.astro  # /logs
+│       └── [slug].astro # /logs/:slug
+└── styles/
+    └── global.css       # Tailwind entry + base layer
+public/                  # served verbatim at the web root
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Design tokens (`brand.mint`, `brand.dark`, `brand.slate`) live in
+`tailwind.config.mjs`, loaded by Tailwind 4 through the `@config`
+directive in `global.css`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Local development
 
-## 🧞 Commands
+```sh
+npm install       # install dependencies
+npm run dev       # dev server -> http://localhost:4321
+npm run build     # static build -> ./dist
+npm run preview   # serve ./dist locally
+```
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Content
 
-## 👀 Want to learn more?
+Log entries are MDX files in `src/content/logs/`. Frontmatter is validated
+against the schema in `src/content.config.ts`:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```yaml
+---
+title: "Entry title"
+description: "Optional; falls back to a generated meta description."
+date: 2026-08-21
+tags: ["infrastructure", "astro"]
+draft: false
+---
+```
+
+Entries with `draft: true` are excluded from both `/logs` and route generation.
+
+---
+
+## Deployment
+
+Automatically deployed to Vercel via GitHub integration — every push to
+`main` triggers a production build. Build settings are pinned in
+`vercel.json` (`npm run build` → `dist`).
