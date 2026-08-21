@@ -10,7 +10,10 @@ const logs = await getCollection('logs', ({ data }) => {
 logs.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="System Logs | Maurice Moore">
+<BaseLayout
+  title="System Logs | Maurice Moore"
+  description="Engineering notes, architecture decisions, and system deployments from Maurice Moore."
+>
   <header class="mb-12 border-b border-gray-800 pb-6">
     <div class="flex items-baseline gap-4 mb-2">
       <h1 class="text-3xl text-white font-bold tracking-tight">System Logs</h1>

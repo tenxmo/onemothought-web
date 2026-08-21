@@ -17,7 +17,11 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${entry.data.title} | Maurice Moore`}>
+<BaseLayout
+  title={`${entry.data.title} | Maurice Moore`}
+  description={entry.data.description ?? `${entry.data.title} — an engineering log from Maurice Moore.`}
+  type="article"
+>
   <article class="max-w-3xl">
     <a href="/logs" class="font-mono text-sm text-gray-500 hover:text-brand-mint mb-8 inline-block">&lt;- Return to logs</a>
     

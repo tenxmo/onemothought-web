@@ -5,6 +5,7 @@ const logsCollection = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/logs' }),
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
     date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().default(false),
