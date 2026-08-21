@@ -3,29 +3,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <header class="mb-16">
-    <div class="flex items-baseline gap-4 mb-2">
+  <header class="mb-16 max-w-2xl">
+    <div class="flex items-baseline gap-4">
       <h1 class="text-3xl font-bold text-white">Maurice Moore</h1>
       <span class="font-mono text-brand-mint text-sm">v2.0.26</span>
     </div>
-    <p class="font-mono text-gray-500 text-sm">Staff-level Backend & Infrastructure Engineer</p>
-  </header>
 
-  <section class="mb-16 max-w-2xl text-gray-300 space-y-6 leading-relaxed">
-    <p>
-      I design and scale distributed systems. With over a decade of experience across media platforms, monetization engines, and core infrastructure, I specialize in building deterministic, low-latency architectures.
+    <p class="mt-6 text-gray-300 leading-relaxed">
+      I design, build, and scale complex systems. Eleven years at Google. Currently a free-agent. Based in Atlanta.
     </p>
-    <p>
-      Currently exploring autonomous agent memory systems, vector embeddings, and real-time network engines. Based in Atlanta, GA.
+
+    <p class="mt-3 font-mono text-sm text-gray-500">
+      Currently building backend engines and agent memory pipelines.
     </p>
-    <div class="font-mono text-sm flex gap-4 text-gray-400">
+
+    <div class="mt-8 font-mono text-sm flex flex-wrap gap-4 text-gray-400">
       <a href="/logs" class="text-brand-mint hover:text-white transition-colors">System Logs</a>
       <span>//</span>
-      <a href="https://github.com" class="hover:text-brand-mint transition-colors">GitHub</a>
+      <a href="https://github.com/tenxmo" class="hover:text-brand-mint transition-colors">GitHub</a>
       <span>//</span>
-      <a href="https://linkedin.com" class="hover:text-brand-mint transition-colors">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/maurice-motion/" class="hover:text-brand-mint transition-colors">LinkedIn</a>
+      <span>//</span>
+      <a href="/resume.pdf" class="hover:text-brand-mint transition-colors">Resume</a>
     </div>
-  </section>
+  </header>
 
   <section class="mb-16">
     <h2 class="font-mono text-lg mb-6 border-b border-gray-800 pb-2 text-white">Active Deployments</h2>
