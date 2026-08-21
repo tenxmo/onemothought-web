@@ -26,6 +26,8 @@ Requires Node `>=22.12.0`.
 
 ```text
 src/
+├── assets/
+│   └── brand/           # logo source files; build-time only, never served
 ├── content/
 │   └── logs/            # MDX entries, schema in content.config.ts
 ├── layouts/
@@ -37,7 +39,7 @@ src/
 │       └── [slug].astro # /logs/:slug
 └── styles/
     └── global.css       # Tailwind entry + base layer
-public/                  # served verbatim at the web root
+public/                  # served verbatim at the web root (favicons, OG image, resume)
 ```
 
 Design tokens (`brand.mint`, `brand.dark`, `brand.slate`) live in
