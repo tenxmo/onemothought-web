@@ -57,12 +57,40 @@ npm run build     # static build -> ./dist
 npm run preview   # serve ./dist locally
 ```
 
-`npm run dev` passes `--host`, so the server also binds to the machine's
-other interfaces and is reachable over Tailscale at
-`http://minimo.tailb737bb.ts.net:4321`. Vite's host check would otherwise
-reject those requests with "Blocked request. This host is not allowed" —
-the permitted names are listed under `vite.server.allowedHosts` in
-`astro.config.mjs`. Dev only; it has no effect on the static build.
+### Serving beyond localhost
+
+The `dev` script carries `--host`, so the server binds to the machine's other
+interfaces and is reachable over the LAN or a Tailscale tailnet, not just
+`localhost`.
+
+The flag lives on the npm script, not in `astro.config.mjs`. **`npx astro dev`
+does not pick it up** — it binds to localhost only and gives no indication
+anything is missing. Use `npm run dev`.
+
+Vite additionally rejects unrecognised `Host` headers with
+`Blocked request. This host is not allowed.` The permitted names are listed
+under `vite.server.allowedHosts` in `astro.config.mjs`. **That list is specific
+to one machine** and needs editing to match whatever host the server runs on —
+its hostname and, for Tailscale, its MagicDNS name. It affects dev only and has
+no bearing on the static build.
+
+### Preview deployments
+
+Vercel builds a preview for every pushed commit. Preview URLs are per-commit,
+not per-branch, and sit behind Vercel SSO — opening one requires being signed
+into the Vercel account that owns the project.
+
+To fetch the current URL for a branch:
+
+```sh
+gh api "repos/<owner>/<repo>/deployments?per_page=10" \
+  --jq '.[] | select(.environment=="Preview") | "\(.sha[0:7]) \(.id)"'
+gh api "repos/<owner>/<repo>/deployments/<id>/statuses" \
+  --jq '.[0] | "\(.state) \(.environment_url)"'
+```
+
+Match the sha against `git rev-parse origin/<branch>` — the newest preview is
+not necessarily the branch tip if a later push is still building.
 
 ---
 
@@ -91,23 +119,11 @@ Automatically deployed to Vercel via GitHub integration — every push to
 `main` triggers a production build. Build settings are pinned in
 `vercel.json` (`npm run build` → `dist`).
 
-### onemosolutions.com redirect (inactive)
+### onemosolutions.com redirect
 
-`vercel.onemosolutions-redirect.jsonc` holds a parked 301 that would send
-all of `onemosolutions.com` to `https://onemothought.com/consulting`.
+`onemosolutions.com` is intended to 301 to `https://onemothought.com/consulting`.
+It is **not active** — nothing in the repo redirects anything today. The rules
+are parked in `vercel.onemosolutions-redirect.jsonc`.
 
-**It is inactive and does nothing today.** Vercel reads only `vercel.json`,
-and that file is strict JSON with no way to carry a commented-out block, so
-the rules live in the `.jsonc` alongside it until they're wanted.
-
-Activating it takes two steps, both required:
-
-1. Add **both** `onemosolutions.com` and `www.onemosolutions.com` to the
-   Vercel project under Settings → Domains. Until the domains resolve to
-   this project, the rules' `has.host` conditions never match, because the
-   request never arrives.
-2. Copy the `redirects` array out of the `.jsonc` into `vercel.json` as a
-   top-level key, then redeploy.
-
-`onemothought.com` stays canonical. `onemosolutions.com` must never serve
-content, and must never appear in a canonical, OG, or sitemap URL.
+Activating them takes dashboard steps as well as a config change, in that
+order. The procedure is in **`docs/onemosolutions-redirect.md`**.

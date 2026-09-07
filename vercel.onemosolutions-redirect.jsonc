@@ -1,19 +1,13 @@
 // INACTIVE — onemosolutions.com redirect for Vercel.
 //
-// This file does nothing. Vercel only reads `vercel.json`, and `vercel.json`
-// is strict JSON, so a genuinely commented-out block cannot live inside it.
-// The redirect is parked here instead until Maurice says to activate it.
+// This file does nothing on its own. Vercel reads only `vercel.json`, and that
+// file is strict JSON, which cannot carry a commented-out block; Vercel also
+// rejects unknown top-level keys, so the rules cannot be parked there under an
+// inert name either. They wait here instead.
 //
-// TO ACTIVATE:
-//   1. Vercel dashboard -> Project -> Settings -> Domains: add both
-//      `onemosolutions.com` and `www.onemosolutions.com` to THIS project.
-//      Leave them with no "Redirect to" setting in the dashboard — the rules
-//      below do the redirecting. Without step 1 the `has.host` rules never
-//      match, because the request never reaches this project.
-//   2. Copy the `redirects` array below (the two objects, uncommented) into
-//      `vercel.json` as a top-level "redirects" key, alongside "framework".
-//   3. Redeploy. Verify: curl -sI https://onemosolutions.com/anything
-//      should return 301 with Location: https://onemothought.com/consulting
+// Activating them requires Vercel dashboard steps BEFORE this config change,
+// or the rules match nothing and fail silently.
+// Full procedure: docs/onemosolutions-redirect.md
 //
 // onemothought.com stays canonical. onemosolutions.com must never serve
 // content and must never appear in a canonical, OG, or sitemap URL.
