@@ -14,12 +14,21 @@ import Footer from '../components/consulting/Footer.astro';
   title="Consulting | Maurice Moore"
   description="Fixed-fee technical assessments for backend systems that carry revenue — billing, payments, and the platforms underneath them."
 >
-  <Hero />
-  <Engagement />
-  <HowItRuns />
-  <Background />
-  <WritingLink />
-  <Contact />
-  <Terms />
-  <Footer />
+  {/*
+    Route-scoped safe-area inset, added on top of the layout's own pt-12.
+    `flex flex-1 flex-col` keeps the body's flex column intact so Footer's
+    mt-auto still works. Note this resolves to 0px unless the viewport meta
+    carries viewport-fit=cover — that meta lives in BaseLayout and is shared
+    with / and /logs, so it is deliberately not set from here.
+  */}
+  <div class="flex flex-1 flex-col pt-[env(safe-area-inset-top)]">
+    <Hero />
+    <Engagement />
+    <HowItRuns />
+    <Background />
+    <WritingLink />
+    <Contact />
+    <Terms />
+    <Footer />
+  </div>
 </BaseLayout>
