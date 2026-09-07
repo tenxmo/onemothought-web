@@ -57,6 +57,13 @@ npm run build     # static build -> ./dist
 npm run preview   # serve ./dist locally
 ```
 
+`npm run dev` passes `--host`, so the server also binds to the machine's
+other interfaces and is reachable over Tailscale at
+`http://minimo.tailb737bb.ts.net:4321`. Vite's host check would otherwise
+reject those requests with "Blocked request. This host is not allowed" —
+the permitted names are listed under `vite.server.allowedHosts` in
+`astro.config.mjs`. Dev only; it has no effect on the static build.
+
 ---
 
 ## Content
@@ -83,3 +90,24 @@ Entries with `draft: true` are excluded from both `/logs` and route generation.
 Automatically deployed to Vercel via GitHub integration — every push to
 `main` triggers a production build. Build settings are pinned in
 `vercel.json` (`npm run build` → `dist`).
+
+### onemosolutions.com redirect (inactive)
+
+`vercel.onemosolutions-redirect.jsonc` holds a parked 301 that would send
+all of `onemosolutions.com` to `https://onemothought.com/consulting`.
+
+**It is inactive and does nothing today.** Vercel reads only `vercel.json`,
+and that file is strict JSON with no way to carry a commented-out block, so
+the rules live in the `.jsonc` alongside it until they're wanted.
+
+Activating it takes two steps, both required:
+
+1. Add **both** `onemosolutions.com` and `www.onemosolutions.com` to the
+   Vercel project under Settings → Domains. Until the domains resolve to
+   this project, the rules' `has.host` conditions never match, because the
+   request never arrives.
+2. Copy the `redirects` array out of the `.jsonc` into `vercel.json` as a
+   top-level key, then redeploy.
+
+`onemothought.com` stays canonical. `onemosolutions.com` must never serve
+content, and must never appear in a canonical, OG, or sitemap URL.
