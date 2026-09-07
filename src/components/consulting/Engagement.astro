@@ -26,15 +26,13 @@ const deliverables = [
     Three to four weeks of engaged work, fixed fee. You get:
   </p>
 
-  <ul class="mt-6 space-y-4">
+  <div class="mt-6 space-y-4">
     {deliverables.map((item) => (
-      <li class="border border-brand-slate p-6">
-        <p class="text-gray-300 leading-relaxed">
-          <span class="text-white">{item.lead}</span> {item.body}
-        </p>
-      </li>
+      <p class="text-gray-300 leading-relaxed">
+        <span class="text-white">{item.lead}</span> {item.body}
+      </p>
     ))}
-  </ul>
+  </div>
 
   <p class="mt-6 text-gray-300 leading-relaxed">
     Implementation is a separate conversation. The assessment stands on its own and is useful whether or not I do the work that follows.
