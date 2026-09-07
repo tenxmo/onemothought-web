@@ -9,6 +9,7 @@ const logsCollection = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
   }),
 });
 

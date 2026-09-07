@@ -1,0 +1,49 @@
+---
+const weekOne = [
+  {
+    lead: 'Build reproducibility.',
+    body: "Can the system be built and run from a clean checkout by someone who didn't write it? The answer predicts the cost of every change that follows.",
+  },
+  {
+    lead: 'A golden-case harness.',
+    body: 'A set of known-good inputs and expected outputs, captured before anything is touched, so later claims about risk are testable rather than asserted.',
+  },
+  {
+    lead: 'Inventory.',
+    body: "What exists, what's running, what's reachable, and what nobody has opened in years.",
+  },
+];
+---
+
+<section class="mb-16 max-w-2xl">
+  <h2 class="font-mono text-lg mb-6 border-b border-gray-800 pb-2 text-white">How it runs</h2>
+
+  <p class="text-gray-300 leading-relaxed">Week one establishes ground truth.</p>
+
+  <ul class="mt-6 space-y-4">
+    {weekOne.map((item) => (
+      <li class="border border-brand-slate p-6">
+        <p class="text-gray-400 leading-relaxed">
+          <span class="text-white">{item.lead}</span> {item.body}
+        </p>
+      </li>
+    ))}
+  </ul>
+
+  <p class="mt-6 text-gray-400 leading-relaxed">
+    Nothing in the assessment is worth reading if these three aren't settled first.
+  </p>
+
+  {/* Weeks two through four are authored from Maurice's own template. Do not draft them. */}
+  <div class="mt-8 border-2 border-dashed border-amber-400 bg-amber-400/5 p-6">
+    <p class="font-mono text-sm font-bold uppercase tracking-widest text-amber-400">
+      TODO — page is unfinished
+    </p>
+    <p class="mt-3 font-mono text-sm text-amber-200 leading-relaxed">
+      Weeks two through four: copy pending. To be filled in from template — not to be drafted here.
+    </p>
+    <p class="mt-3 font-mono text-xs text-amber-400/70">
+      Remove this block before /consulting is linked publicly.
+    </p>
+  </div>
+</section>

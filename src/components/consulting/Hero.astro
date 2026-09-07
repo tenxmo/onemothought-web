@@ -1,0 +1,22 @@
+---
+/**
+ * Headshot slot: intentionally empty for now — no placeholder is rendered.
+ * The slot is reserved at md+ so dropping an image in later does not reflow
+ * the text column. To add one: import the asset and render it inside the
+ * reserved div below, then drop the aria-hidden attribute.
+ */
+---
+
+<header class="mb-16">
+  <div class="md:grid md:grid-cols-[minmax(0,1fr)_10rem] md:gap-10 md:items-start">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-bold text-white">Maurice Moore</h1>
+
+      <p class="mt-6 text-gray-300 leading-relaxed">
+        I help companies modernize the backend systems their revenue runs through — billing, payments, and the platforms underneath them. Eleven years at Google, most recently on Play's monetization platform.
+      </p>
+    </div>
+
+    <div class="hidden md:block w-40 h-40" aria-hidden="true"></div>
+  </div>
+</header>

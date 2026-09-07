@@ -1,0 +1,16 @@
+---
+import { getFeaturedGate } from '../../lib/consulting';
+
+const { count, threshold, meetsThreshold } = await getFeaturedGate();
+---
+
+{meetsThreshold && (
+  <section class="mb-16 max-w-2xl">
+    <h2 class="font-mono text-lg mb-6 border-b border-gray-800 pb-2 text-white">Writing</h2>
+    <a href="/logs" class="font-mono text-sm text-brand-mint hover:text-white transition-colors">System Logs -&gt;</a>
+  </section>
+)}
+
+{!meetsThreshold && import.meta.env.DEV && (
+  <p>writing link gate: {count} of {threshold} featured posts — link hidden</p>
+)}
