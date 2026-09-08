@@ -68,11 +68,25 @@ does not pick it up** — it binds to localhost only and gives no indication
 anything is missing. Use `npm run dev`.
 
 Vite additionally rejects unrecognised `Host` headers with
-`Blocked request. This host is not allowed.` The permitted names are listed
-under `vite.server.allowedHosts` in `astro.config.mjs`. **That list is specific
-to one machine** and needs editing to match whatever host the server runs on —
-its hostname and, for Tailscale, its MagicDNS name. It affects dev only and has
-no bearing on the static build.
+`Blocked request. This host is not allowed.` Reaching the server by any name
+other than `localhost` therefore needs that name allow-listed.
+
+**`DEV_ALLOWED_HOSTS`** (optional) is a comma-separated list of extra hostnames
+to accept. It is machine-specific, so it belongs in `.env.local`, which is
+gitignored and never committed:
+
+```sh
+# .env.local
+DEV_ALLOWED_HOSTS=my-laptop,my-laptop.tailnet-name.ts.net
+```
+
+Use the machine's own hostname and, for Tailscale, its MagicDNS name
+(`tailscale status --json` reports the latter as `Self.DNSName`).
+
+Leaving it unset is fine and is the default on a fresh clone: no host list is
+configured, Vite's own default applies, and `localhost` works. Only access by
+another name fails, with the message above. The variable affects dev only and
+has no bearing on the static build.
 
 ### Preview deployments
 
