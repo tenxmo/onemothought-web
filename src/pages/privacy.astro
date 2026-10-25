@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// The privacy policy Google's OAuth consent screen links to for the personal tools Maurice runs
+// against his own Google account (rclone backups to Drive). Scoped to what those tools actually do.
+const updated = '2026-10-25';
+---
+
+<BaseLayout
+  title="Privacy | Maurice Moore"
+  description="How the personal tools Maurice Moore runs against his own accounts handle data."
+>
+  <main class="max-w-2xl text-gray-300 leading-relaxed">
+    <h1 class="text-3xl font-bold text-white">Privacy</h1>
+    <p class="mt-2 font-mono text-sm text-gray-400">Updated {updated}</p>
+
+    <section class="mt-10 space-y-4">
+      <h2 class="text-xl font-semibold text-white">This website</h2>
+      <p>onemothought.com sets no cookies, loads no analytics or tracking scripts, and collects nothing about visitors. Its host, Vercel, keeps standard server logs.</p>
+    </section>
+
+    <section class="mt-10 space-y-4">
+      <h2 class="text-xl font-semibold text-white">rclone minimo backup</h2>
+      <p>"rclone minimo backup" is the name of a Google OAuth client used by one person, Maurice Moore, to back up his own home server to his own Google Drive. It isn't offered to anyone else.</p>
+      <ul class="list-disc space-y-2 pl-6">
+        <li><span class="text-white">What it can reach:</span> only the files it creates in that Drive (Google's <code class="font-mono text-sm">drive.file</code> scope). It can't see or open anything else in the account.</li>
+        <li><span class="text-white">What it stores:</span> backup data, encrypted on the server by restic before upload, so Google Drive holds only ciphertext.</li>
+        <li><span class="text-white">Who it's shared with:</span> no one. Nothing is sold, shared, or used for advertising or to train models.</li>
+        <li><span class="text-white">Revoking access:</span> remove "rclone minimo backup" at <a class="text-brand-mint underline" href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+      </ul>
+    </section>
+
+    <section class="mt-10 space-y-4">
+      <h2 class="text-xl font-semibold text-white">Contact</h2>
+      <p>Maurice Moore, <a class="text-brand-mint underline" href="mailto:maurice.motion@gmail.com">maurice.motion@gmail.com</a>.</p>
+    </section>
+
+    <p class="mt-12"><a class="text-brand-mint underline" href="/">← Home</a></p>
+  </main>
+</BaseLayout>
